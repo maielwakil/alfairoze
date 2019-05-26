@@ -1,4 +1,3 @@
-<?php /* Template Name: department*/ ?>
 <?php get_header(); ?>
     <div class="section theme--main-slider">
         <div class="component type--main-slider">
@@ -59,26 +58,20 @@
           </div>
           <div class="block__main">                     
             <div class="component type--clinics">
-            <?php
-                  $args = array(
-                    'post_type'   => 'department',
-                    'post_status' => 'publish',
-                    'posts_per_page'=>'-1'
-                    );   
-                                
-                    $slider = new WP_Query( $args );if( $slider->have_posts() ) :               
-                    while( $slider->have_posts() ) :  $slider->the_post(); ?>
-                    <div class="clinic">
+            <?php while(have_posts() ): the_post();?>
+                <div class="clinic">
                     <div class="image">
                     <a href="<?php the_permalink(); ?>"><img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>"></a>
                     </div>
                     <div class="name">
                     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                     </div>
-                  </div>
-               
-               <?php  endwhile;endif;  ?>         
+                </div>
+            <?php endwhile; ?>    
             </div>
+          </div>
+          <div class="block__footer">
+          <?php custom_pagination(); ?>
           </div>
         </div>
       </div>
